@@ -1,0 +1,48 @@
+<main>
+  <h1>{{title}}</h1>
+  <form [formGroup]="loanCalcForm" (ngSubmit)="onSubmit()">
+
+    <label for="monthlyIncome">Monthly income: </label>
+    <input id="monthlyIncome" class="{{loanCalcErrors.monthlyIncome? 'ng-invalid' : ''}}" type="number" min="500" step="50" formControlName="monthlyIncome" required>
+      <div *ngIf="loanCalcErrors.monthlyIncome" class="alert">
+        {{loanCalcErrors.monthlyIncome}}
+      </div>
+
+    <label for="requestedAmount">Requested amount: </label>
+    <input id="requestedAmount" class="{{loanCalcErrors.requestedAmount? 'ng-invalid' : ''}}" type="number" min="20000" step="500" formControlName="requestedAmount">
+      <div *ngIf="loanCalcErrors.requestedAmount" class="alert">
+        {{loanCalcErrors.requestedAmount}}
+      </div>
+
+    <label for="loanTerm">Loan term (in months): </label>
+    <input id="loanTerm" class="{{loanCalcErrors.loanTerm? 'ng-invalid' : ''}}" type="number" step="6" min="36" max="360" formControlName="loanTerm">
+      <div *ngIf="loanCalcErrors.loanTerm" class="alert">
+        {{loanCalcErrors.loanTerm}}
+      </div>
+
+    <fieldset class="{{loanCalcErrors.children? 'ng-invalid' : ''}}">
+      <legend>Children: </legend>
+        <input id="noChildren" type="radio" formControlName="children" value="NONE"><label for="noChildren">None</label>
+        <input id="singleChild" type="radio" formControlName="children" value="SINGLE"><label for="singleChild">Single</label>
+        <input id="multipleChildren" type="radio" formControlName="children" value="MULTIPLE"><label for="multipleChildren">Multiple</label>
+      <div *ngIf="loanCalcErrors.children" class="alert">
+        {{loanCalcErrors.children}}
+      </div>
+    </fieldset>
+
+    <fieldset class="{{loanCalcErrors.coapplicant? 'ng-invalid' : ''}}">
+      <legend>Co-applicant: </legend>
+        <input id="noCoapplicant" type="radio" formControlName="coapplicant" value="NONE"><label for="noCoapplicant">None</label>
+        <input id="singleCoapplicant" type="radio" formControlName="coapplicant" value="SINGLE_BORROWER"><label for="singleCoapplicant">Single</label>
+        <input id="multipleCoapplicant" type="radio" formControlName="coapplicant" value="MULTIPLE_BORROWERS"><label for="multipleCoapplicant">Multiple</label>
+      <div *ngIf="loanCalcErrors.coapplicant" class="alert">
+        {{loanCalcErrors.coapplicant}}
+      </div>
+    </fieldset>
+
+    <button type="submit" [disabled]="loanCalcForm.invalid">Submit</button>
+  </form>
+  <div *ngIf="loanResult !== null">
+    <p>We can give you a loan of {{loanResult!.loanAmount}} EUR with an interest rate of {{loanResult!.interestRate}}%</p>
+  </div>
+</main>

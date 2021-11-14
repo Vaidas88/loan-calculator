@@ -75,7 +75,8 @@
               "browserTarget": "loan-calc:build:production"
             },
             "development": {
-              "browserTarget": "loan-calc:build:development"
+              "browserTarget": "loan-calc:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

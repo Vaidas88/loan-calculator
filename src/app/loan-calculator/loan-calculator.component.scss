@@ -1,0 +1,54 @@
+main {
+  font-family: Sans-Serif;
+  background: mistyrose;
+  width: 80%;
+  max-width: 450px;
+  padding: 2rem;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+main * {
+  color: darkslategray;
+}
+form * {
+  display: block;
+  padding: 1rem;
+}
+form label {
+  padding-left: 0;
+  font-weight: 600;
+}
+form input[type="number"] {
+  width: 5rem;
+}
+form input[type="number"]::-webkit-inner-spin-button{
+  opacity: 1;
+  width:1rem;
+  margin:0;
+}
+form legend {
+  font-weight: 600;
+  padding: 0 1rem;
+}
+form fieldset {
+  margin-top: 1rem;
+}
+form input[type="radio"], form input[type="radio"] + label {
+  display: inline-block;
+  font-weight: 400;
+  padding: 0 1rem 0 0;
+}
+form button {
+  margin-top: 1rem;
+}
+
+form .ng-invalid {
+  border: 1px solid red;
+}
+form .ng-invalid legend {
+  color: red;
+}
+main div.alert {
+  background: rgba(255, 0, 0, .3);
+  color: darkred;
+}
