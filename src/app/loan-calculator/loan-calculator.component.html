@@ -43,6 +43,6 @@
     <button type="submit" [disabled]="loanCalcForm.invalid">Submit</button>
   </form>
   <div *ngIf="loanResult !== null">
-    <p>We can give you a loan of {{loanResult!.loanAmount}} EUR with an interest rate of {{loanResult!.interestRate}}%</p>
+    <p>We can give you a loan of {{loanResult?.loanAmount}} EUR with an interest rate of {{loanResult?.interestRate}}%</p>
   </div>
 </main>

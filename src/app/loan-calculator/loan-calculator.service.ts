@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {ILoanCalc} from "./iloan-calc";
+import {ILoanCalc} from "./interfaces/iloan-calc";
 import {environment as env} from "../../environments/environment";
 import {catchError, retry} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
-import {ILoanResult} from "./iloan-result";
+import {ILoanResult} from "./interfaces/iloan-result";
 
 @Injectable({
   providedIn: 'root'

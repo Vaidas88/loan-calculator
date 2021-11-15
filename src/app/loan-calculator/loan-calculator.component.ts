@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {ILoanCalc} from "./iloan-calc";
+import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {ILoanCalc} from "./interfaces/iloan-calc";
 import {LoanCalculatorService} from "./loan-calculator.service";
-import {ILoanResult} from "./iloan-result";
+import {ILoanResult} from "./interfaces/iloan-result";
 
 @Component({
   selector: 'app-loan-calculator',
@@ -51,8 +51,8 @@ export class LoanCalculatorComponent implements OnInit {
 
   handleFormError(): void {
     for(let key in this.f){
-      if(this.f[key].errors !== null)
-        switch(key){
+      if(this.f[key].errors !== null) {
+        switch (key) {
           case 'monthlyIncome':
             this.loanCalcErrors[key] = 'Monthly income is too low. Minimum income is 500 EUR';
             break;
@@ -71,7 +71,7 @@ export class LoanCalculatorComponent implements OnInit {
           default:
             this.loanCalcErrors['unknown'] = 'Unknown error occured';
         }
-      console.log(key)
+      }
     }
   }
 

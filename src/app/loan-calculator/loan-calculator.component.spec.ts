@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoanCalculatorComponent } from './loan-calculator.component';
+import {FormBuilder} from "@angular/forms";
 
 describe('LoanCalculatorComponent', () => {
   let component: LoanCalculatorComponent;
@@ -18,6 +19,4 @@ describe('LoanCalculatorComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-
 });
