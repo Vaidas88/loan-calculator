@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ILoanCalc} from "./interfaces/iloan-calc";
 import {LoanCalculatorService} from "./loan-calculator.service";
 import {ILoanResult} from "./interfaces/iloan-result";
@@ -12,7 +12,7 @@ import {ILoanResult} from "./interfaces/iloan-result";
 export class LoanCalculatorComponent implements OnInit {
   public title = 'Loan Calculator';
   private loanCalc?: ILoanCalc;
-  public loanResult?: ILoanResult | null;
+  public loanResult: ILoanResult | null = null;
   public loanCalcErrors:{ [key: string]: string; } = {};
 
   public loanCalcForm = this.formBuilder.group({
@@ -20,7 +20,7 @@ export class LoanCalculatorComponent implements OnInit {
       Validators.required, Validators.min(500), Validators.pattern("^[0-9]*$")
     ])],
     requestedAmount: [20000, Validators.compose([
-      Validators.required, Validators.min(20000), Validators.pattern("^[0-9]*$")
+      Validators.required, Validators.min(20000), Validators.max(50000), Validators.pattern("^[0-9]*$")
     ])],
     loanTerm: [36, Validators.compose([
       Validators.required, Validators.min(36), Validators.max(360), Validators.pattern("^[0-9]*$")
@@ -57,10 +57,18 @@ export class LoanCalculatorComponent implements OnInit {
             this.loanCalcErrors[key] = 'Monthly income is too low. Minimum income is 500 EUR';
             break;
           case 'requestedAmount':
-            this.loanCalcErrors[key] = 'Requested Amount too low. Minimum loan of 20000 available';
+            if(this.f[key].errors?.min){
+              this.loanCalcErrors[key] = 'Requested Amount too low. Minimum loan of 20000 available';
+            } else if(this.f[key].errors?.max){
+              this.loanCalcErrors[key] = 'Requested Amount too high. Maximum loan of 50000 available';
+            }
             break;
           case 'loanTerm':
-            this.loanCalcErrors[key] = 'Loan term is too short. Minimum term: 36 months';
+            if(this.f[key].errors?.min){
+              this.loanCalcErrors[key] = 'Loan term is too short. Minimum term: 36 months';
+            } else if(this.f[key].errors?.max){
+              this.loanCalcErrors[key] = 'Loan term is too long. Maximum term: 360 months';
+            }
             break;
           case 'children':
             this.loanCalcErrors[key] = 'Wrong or missing children status';
