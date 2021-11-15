@@ -3,7 +3,6 @@ import { LoanCalculatorService } from './loan-calculator.service';
 import {Children} from "./types/children.type";
 import {Coapplicants} from "./types/coapplicants.type";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import { of } from 'rxjs';
 
 describe('LoanCalculatorService', () => {
   let service: LoanCalculatorService;
